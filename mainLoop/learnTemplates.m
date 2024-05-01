@@ -33,8 +33,8 @@ Nfilt 	= ops.Nfilt;
 Nchan 	= ops.Nchan;
 
 % two variables for the same thing? number of nearest channels to each primary channel
-NchanNear   = min(ops.Nchan, 32);
-Nnearest    = min(ops.Nchan, 32);
+NchanNear   = min(ops.Nchan, 2);
+Nnearest    = min(ops.Nchan, 2);
 
 % decay of gaussian spatial mask centered on a channel
 sigmaMask  = ops.sigmaMask;
@@ -270,8 +270,8 @@ for ibatch = 1:niter
                     figure(figHand);
                 end
                 make_fig(W, U, mu, nsp)           
-            catch ME
-               warning('Error making figure was: %s',ME.message);
+            %catch ME
+               %warning('Error making figure was: %s',ME.message);
             end
         end
     end

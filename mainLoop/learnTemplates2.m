@@ -34,8 +34,8 @@ Nfilt 	= ops.Nfilt;
 Nchan 	= ops.Nchan;
 
 % two variables for the same thing? number of nearest channels to each primary channel
-NchanNear   = min(ops.Nchan, 32);
-Nnearest    = min(ops.Nchan, 32);
+NchanNear   = min(ops.Nchan, 2);
+Nnearest    = min(ops.Nchan, 2);
 
 % decay of gaussian spatial mask centered on a channel
 sigmaMask  = ops.sigmaMask;
@@ -62,7 +62,7 @@ nInnerIter  = 60; % this is for SVD for the power iteration
 % from the past that were averaged to give rise to the current template
 pmi = exp(-1./linspace(ops.momentum(2), ops.momentum(2), niter));
 
-Nsum = min(Nchan,7); % how many channels to extend out the waveform in mexgetspikes
+Nsum = min(Nchan,2); % how many channels to extend out the waveform in mexgetspikes
 % lots of parameters passed into the CUDA scripts
 
 % initialize the list of channels each template lives on
@@ -177,8 +177,8 @@ for ibatch = 1:niter
                     figure(figHand);
                 end
                 make_fig(W, U, mu, nsp)           
-            catch ME
-               warning('Error making figure was: %s',ME.message);
+            %catch ME
+            %   warning('Error making figure was: %s',ME.message);
             end
         end
     end
